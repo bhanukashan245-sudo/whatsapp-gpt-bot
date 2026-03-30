@@ -82,5 +82,16 @@ async function startBot() {
         }
     });
 }
+const { default: makeWASocket } = require("@whiskeysockets/baileys")
 
-startBot();
+function startBot() {
+    const sock = makeWASocket()
+
+    sock.ev.on("connection.update", (update) => {
+        console.log("Status:", update)
+    })
+
+    console.log("Bot started")
+}
+
+startBot()
